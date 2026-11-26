@@ -1,0 +1,8 @@
+{
+  "name": "dsh-my-bot-l2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "我的 BOT·学员版：女装短视频带货方法论教练（五篇脱敏方法论，不含底价与客户数据）。",
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

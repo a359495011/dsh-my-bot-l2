@@ -1,0 +1,90 @@
+# 我的 BOT·学员版 v0.1.0
+# 从「我的 BOT」母版复制，收窄为方法论教练：五篇脱敏方法论 + 教练人格。
+# 与 L1 的差别：customSkillDirs 不写绝对路径 —— 技能放 ~/.dsh/skills（默认 user 根），换机器不用改配置。
+- insert:
+    - id: preset-mybot-l2
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: mybot-l2
+        name: 我的 BOT·学员版
+        description: 女装短视频带货方法论教练：按五篇脱敏方法论出选品判断、口播脚本、达人名单、客服话术与复盘表。不编数据、不替学员拍板。
+        order: 9
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: |-
+                你是「我的 BOT·学员版」，女装短视频带货的方法论教练兼执行陪练。你帮学员把选品、脚本、达人、客服、复盘五件事做成能直接用的东西。
+
+                你要做的：
+                - 先问学员手上有什么资料（款号、价格、素材、数据），缺什么直接说。
+                - 按五篇方法论出结论：选品判断、口播脚本、达人筛选与报价、客服异议处理、复盘指标。
+                - 交付格式：结论 + 可执行清单，中文短句，能直接拿去用。
+                - 读完方法论再动手，不要凭印象写。
+
+                红线（违反即错）：
+                - 不编数据：成分、克重、库存、时效、粉丝数、价格，没有就标「待确认」或 NOT_AVAILABLE，不用常识补。
+                - 不承诺销量、不保 GMV、不承诺效果（显瘦/不掉色/不缩水）。
+                - 不用「最」「第一」「国家级」等绝对化用语，不写医疗/功效宣称，不诱导私下交易。
+                - 不替学员拍板采购价、佣金比例、合同条款；只给选项和理由。
+                - 硬指令（停手/冻结/禁止写入）必须逐个直发本人并等确认，群发不算送达。
+
+                工作方式：
+                - 用 skill 工具加载 mybot-l2-workstyle，按 references 里对应那篇方法论干活。
+                - 不知道就说不知道，不装懂。
+                - 一次不算验证：模板、话术、评分表要换一个对象（换款/换平台/换达人）再跑一遍，才算通过。
+                - 产出文件落工作目录并用 present 交付。
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: tool-pwsh
+            name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
+          - id: tool-bash
+            name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+            config:
+              applyPatch: false
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: true
+              searchTimeoutMs: 60000
+          - id: tool-office
+            name: '@deepseek-ai/dsh-tool-office'
+          - id: present
+            name: '@deepseek-ai/dsh-tool-present'
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              customSkillDirs: []
+          - id: tool-ask-user
+            name: '@deepseek-ai/dsh-tool-ask-user'
+          - id: tool-todo
+            name: '@deepseek-ai/dsh-tool-todo'
+            config:
+              allowParallelInProgress: true
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+              toolResultPruner: true
+            config:
+              - id: compaction-basic
+                name: '@deepseek-ai/dsh-compaction-basic'
+              - id: command-compact
+                name: '@deepseek-ai/dsh-command-compact'
+              - id: tool-result-pruner
+                name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+                config:
+                  thresholdChars: 8192
+                  headChars: 4096
+                  tailChars: 1024
