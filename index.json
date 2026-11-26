@@ -1,0 +1,51 @@
+{
+  "format": 1,
+  "title": {
+    "zh": "我的 BOT 插件源",
+    "en": "My BOT Plugin Source"
+  },
+  "description": {
+    "zh": "女装短视频带货方法论教练（学员版）。",
+    "en": "Student edition of the womenswear short-video selling coach."
+  },
+  "metadata": {
+    "labels": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-my-bot-l2",
+      "title": {
+        "zh": "我的 BOT·学员版",
+        "en": "My BOT · Student Edition"
+      },
+      "description": {
+        "zh": "女装短视频带货方法论教练：选品判断、口播脚本结构、达人筛选与报价、客服异议处理、复盘指标五篇脱敏方法论。不含底价与客户数据，不承诺销量。",
+        "en": "Coach for womenswear short-video selling: five sanitized playbooks."
+      },
+      "homepage": "https://github.com/a359495011/dsh-my-bot-l2",
+      "repository": {
+        "url": "https://github.com/a359495011/dsh-my-bot-l2"
+      },
+      "metadata": {
+        "keywords": [
+          "dsh-bundle",
+          "dsh-agent-preset",
+          "womenswear",
+          "short-video",
+          "training"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1795676503,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/a359495011/dsh-my-bot-l2.git",
+            "commit": "214f71a48fefc9670c76c74a5632b36008d39b41"
+          }
+        }
+      ]
+    }
+  ]
+}

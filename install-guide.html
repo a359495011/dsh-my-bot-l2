@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的 BOT · 学员版 安装指南</title>
+<style>
+  :root { --ink:#1b2430; --muted:#5b6b7c; --line:#e3e8ee; --accent:#0f766e; --bg:#f7f9fb; --card:#fff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.75 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; margin: 0 0 16px; }
+  .step { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .08em; }
+  h2 { font-size: 18px; margin: 4px 0 10px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0; padding-left: 22px; }
+  code { background:#eef2f5; border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size: 13px; word-break: break-all; }
+  pre { background:#0f1720; color:#d9e2ec; border-radius:10px; padding:14px 16px; overflow:auto; font-size:13px; line-height:1.6; }
+  pre code { background:none; border:0; padding:0; color:inherit; }
+  .note { border-left: 3px solid #d97706; background:#fffbeb; padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0; font-size:14px; color:#7c4a03; }
+  .ok { border-left-color: var(--accent); background:#f0fdfa; color:#0b4f4a; }
+  table { width:100%; border-collapse: collapse; font-size:14px; }
+  th, td { text-align:left; border-bottom:1px solid var(--line); padding:8px 6px; vertical-align: top; }
+  footer { color: var(--muted); font-size: 13px; margin-top: 28px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>我的 BOT · 学员版</h1>
+  <p class="sub">女装短视频带货方法论教练：选品判断、口播脚本、达人筛选与报价、客服异议、复盘指标。装完在侧栏选「我的 BOT·学员版」就能用。</p>
+
+  <div class="card">
+    <div class="step">第 1 步</div>
+    <h2>装 DeepSeek Harness 桌面版</h2>
+    <p>到 <a href="https://deepseek.com/harness/" target="_blank" rel="noreferrer">deepseek.com/harness/</a> 下载 Windows 版，一路下一步装完，打开。</p>
+  </div>
+
+  <div class="card">
+    <div class="step">第 2 步</div>
+    <h2>添加插件源</h2>
+    <p>打开「设置 → 插件」，找到「插件源 / 市场索引 / Index URL」一栏，把下面的地址粘进去保存：</p>
+    <pre><code>https://raw.githubusercontent.com/a359495011/dsh-my-bot-l2/main/index.json</code></pre>
+    <p>不同版本菜单位置略有差异，认准「插件源」「市场索引」「Index」这几个字即可。</p>
+  </div>
+
+  <div class="card">
+    <div class="step">第 3 步</div>
+    <h2>安装「我的 BOT·学员版」</h2>
+    <p>回到「插件 → 发现」，刷新后能看到「我的 BOT·学员版」，点安装，等它装完。</p>
+    <div class="note">如果发现页没有刷新出条目，关掉设置面板再打开一次；还不行就把第 2 步的地址复制到「添加插件 → 安装第三方插件」里试试。</div>
+  </div>
+
+  <div class="card">
+    <div class="step">第 4 步</div>
+    <h2>放好方法论（五篇）</h2>
+    <p>学员版的五篇方法论放在技能目录里，放进去才生效。两种方式任选：</p>
+    <p><b>方式 A（推荐）</b>：下载仓库里的 <code>install.ps1</code>，右键「使用 PowerShell 运行」，它会自动找安装位置并复制到 <code>%USERPROFILE%\.dsh\skills\</code>，跑完会打印是否成功。</p>
+    <p><b>方式 B（手动）</b>：在仓库页面打开 <code>skills/mybot-l2-workstyle</code> 文件夹，下载整个文件夹，放到 <code>C:\Users\你的用户名\.dsh\skills\</code> 下面，最终路径要是 <code>...\.dsh\skills\mybot-l2-workstyle\SKILL.md</code>。</p>
+  </div>
+
+  <div class="card">
+    <div class="step">第 5 步</div>
+    <h2>配一个模型</h2>
+    <p>打开「设置 → 模型 → 添加模型供应商」，用你自己的模型账号。以 DeepSeek 开放平台为例：</p>
+    <table>
+      <tr><th>项目</th><th>填什么</th></tr>
+      <tr><td>协议</td><td>OpenAI Chat Completions</td></tr>
+      <tr><td>Base URL</td><td><code>https://api.deepseek.com</code></td></tr>
+      <tr><td>API Key</td><td>你自己的 Key（在 platform.deepseek.com 创建）</td></tr>
+      <tr><td>模型</td><td><code>deepseek-chat</code></td></tr>
+    </table>
+    <p>其他家的模型也一样，只要它兼容 OpenAI 协议，把 Base URL、Key、模型名换成那家的即可。</p>
+  </div>
+
+  <div class="card">
+    <div class="step">第 6 步</div>
+    <h2>开始用</h2>
+    <p>新建一个会话，在人格列表里选「我的 BOT·学员版」，第一句可以这样说：</p>
+    <pre><code>我有一款女装新品要拍短视频，帮我把选品判断和口播脚本先过一遍。</code></pre>
+    <p>它会先问你缺哪些资料，再按五篇方法论给结论和可执行清单。</p>
+  </div>
+
+  <div class="card">
+    <div class="step">说明</div>
+    <h2>它能做什么、不能做什么</h2>
+    <ul>
+      <li>能：按方法论判断一个款值不值得做、写 15～40 秒口播脚本、给达人筛选标准和报价思路、给客服异议应答、做复盘表。</li>
+      <li>不能：替你看真实后台数据、替你跟达人谈价签合同、承诺销量或 GMV。抓不到的信息它会明确标「待确认」，不硬编。</li>
+      <li>红线：不用「最」「第一」「国家级」等绝对化用语，不做医疗功效宣称，不引导站外私下交易。</li>
+    </ul>
+    <div class="note ok">学员版不含底价、客户名单、寄样记录这些内部数据，拿到的只是方法论。</div>
+  </div>
+
+  <footer>
+    版本 0.1.0 · 离线安装包（单独发）指纹：11,645 字节，sha256 9645BDE1DDD84AD03AD56BA28D170A314D1B4C85A12347E451D497646329BD6D<br>
+    装不上时：确认第 2 步地址能直接在浏览器打开、返回一段 JSON；网络慢就先多等一会儿。
+  </footer>
+</div>
+</body>
+</html>
